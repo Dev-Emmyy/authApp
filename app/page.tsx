@@ -10,7 +10,6 @@ import {
   FormControlLabel,
   IconButton,
   Tooltip,
-  InputAdornment,
   Divider,
   CircularProgress,
 } from "@mui/material";
@@ -529,7 +528,6 @@ export default function DashboardPage() {
               label="Max"
               variant="outlined"
               value="$0.00"
-              disabled
               sx={{
                 mb: 2,
                 "& .MuiOutlinedInput-root": {
@@ -541,9 +539,6 @@ export default function DashboardPage() {
                 },
                 "& .MuiInputLabel-root": { color: "#FFFFFF" },
                 "& .Mui-focused.MuiInputLabel-root": { color: "#00FF00" },
-              }}
-              InputProps={{
-                startAdornment: <InputAdornment position="start">$</InputAdornment>,
               }}
             />
             <TextField
