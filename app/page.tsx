@@ -8,6 +8,7 @@ import {
   Tooltip,
 } from "@mui/material";
 import { ExitToApp } from "@mui/icons-material";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 export default function Page() {
@@ -69,19 +70,7 @@ export default function Page() {
       >
         {/* Parcl Logo/Name on Left */}
         <Box sx={{ display: "flex", alignItems: "center" }}>
-          <Typography
-            variant="h5"
-            sx={{
-              fontFamily: "Montserrat, sans-serif",
-              fontWeight: 700,
-              color: "#00FF00",
-              letterSpacing: "-0.5px",
-              cursor: "pointer",
-            }}
-            onClick={() => router.push("/")}
-          >
-            Parcl
-          </Typography>
+          <Image alt="Parcl Logo" priority width={100} height={40} decoding="async" className="mb-xx-small" src="/logo.svg" style={{ color: "transparent" }} />
         </Box>
 
         {/* Username and Avatar on Right */}
@@ -124,6 +113,28 @@ export default function Page() {
         </Box>
       </Box>
 
+      <Box>
+        {/* Main Content */}
+        <Box>
+          <Box>
+            <Box>
+              <Image alt="market icon" loading="lazy" width="50" height="50" decoding="async" data-nimg="1" src="/market.svg" style={{ color: "transparent" }}/>
+            </Box>
+          </Box>
+
+
+
+
+
+
+
+
+
+
+
+        </Box>
+        
+      </Box>
       
     </Box>
   );
