@@ -12,11 +12,12 @@ import {
   Tooltip,
   InputAdornment,
   Divider,
+  CircularProgress,
 } from "@mui/material";
 import { ExitToApp } from "@mui/icons-material";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function DashboardPage() {
   const { data: session, status } = useSession();
@@ -27,8 +28,19 @@ export default function DashboardPage() {
   const [isLongActive, setIsLongActive] = useState(false);
   const [isShortActive, setIsShortActive] = useState(false);
   const [viewMode, setViewMode] = useState<"pricing" | "funding">("pricing"); // Track pricing or funding
+  const [isLoading, setIsLoading] = useState(true); // New state for controlled loading
 
-  if (status === "loading") {
+  useEffect(() => {
+    // Simulate a loading delay (e.g., 3 seconds)
+    const timeout = setTimeout(() => {
+      setIsLoading(false); // Stop loading after 3 seconds
+    }, 3000);
+
+    // Cleanup timeout on unmount or re-render
+    return () => clearTimeout(timeout);
+  }, []); // Empty dependency array ensures it runs once on mount
+
+  if (isLoading || status === "loading") {
     return (
       <Box
         sx={{
@@ -38,8 +50,17 @@ export default function DashboardPage() {
           justifyContent: "center",
           bgcolor: "#000000",
           color: "#FFFFFF",
+          flexDirection: "column",
+          gap: 2,
         }}
       >
+        <CircularProgress
+          sx={{
+            color: "#00FF00",
+            width: "40px",
+            height: "40px",
+          }}
+        />
         <Typography variant="h6" sx={{ fontFamily: "Roboto, sans-serif" }}>
           Loading...
         </Typography>
@@ -152,7 +173,7 @@ export default function DashboardPage() {
                   style={{ color: "transparent" }}
                 />
                 <Typography
-                  variant="h5"
+                  variant="h3"
                   sx={{
                     fontFamily: "Montserrat, sans-serif",
                     color: "#FFFFFF",
